@@ -16,3 +16,11 @@ export function get(url){
         })
     })
 }
+
+export function showSuccess(text) {
+    wx.shwoToast({
+        title:text,
+        icon:'success'
+    })
+    
+}

@@ -3,18 +3,19 @@
       <div class="userinfo">
           <!-- <open-data type="userAvatarUrl" class="headerimg"></open-data> -->
           <img :src="userinfo.avatarUrl" alt="">
-          <!-- <open-data type="userNickName"></open-data> -->
+          <p>{{userinfo.nickName}}</p>
       </div>
-      <YearProgress></YearProgress>
-      <button class="btn">添加图书</button>
-        <button  open-type="getUserInfo" @click="doLogin" @getuserinfo="bindGetUserInfo">授权用户信息</button>
+      <YearProgress v-bind:getYear="getYear"></YearProgress>
+      <button class="btn"  v-if="userinfo.openId">添加图书</button>
+      <button v-else open-type="getUserInfo" @click="doLogin" @getuserinfo="bindGetUserInfo">授权用户信息</button>
     </div>
 </template>
 
 <script>
 import {get, showSuccess} from '../../until'
 import qcloud from 'wafer2-client-sdk'
-import config from '../../config' 
+import config from '../../config'
+import YearProgress from '@/components/YearProgress'
 export default {
   methods: {
     doLogin() {
@@ -48,12 +49,16 @@ export default {
       this.userinfo = userinfo
     }
   },
+  components:{
+    YearProgress
+  },
   data(){
     return {
       userinfo:{
         avatarUrl: '../../../static/img/unlogin.png',
         nickName: '点击登录'
-      }
+      },
+       getYear: new Date().getFullYear()
     }
   }
 };

@@ -3,7 +3,7 @@ CREATE TABLE `book` (
     `isbn` varchar(20) NOT NULL,
     `openid` varchar(100) NOT NULL,
     `title` varchar(100) NOT NULL,
-    `images` varchar(100) NOT NULL,
+    `image` varchar(100) NOT NULL,
     `alt` varchar(100) NOT NULL,
     `publisher` varchar(100) NOT NULL,
     `summary` varchar(1000) NOT NULL,

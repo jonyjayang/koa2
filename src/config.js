@@ -1,5 +1,5 @@
 //配置项
-const host = 'http://192.168.11.165:5757'
+const host = 'http://localhost:5757'
 
 const config = {
   host,

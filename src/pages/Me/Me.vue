@@ -6,13 +6,13 @@
           <p>{{userinfo.nickName}}</p>
       </div>
       <YearProgress v-bind:getYear="getYear"></YearProgress>
-      <button class="btn"  v-if="userinfo.openId">添加图书</button>
+      <button class="btn"  v-if="userinfo.openId" @click="scankBook">添加图书</button>
       <button v-else open-type="getUserInfo" @click="doLogin" @getuserinfo="bindGetUserInfo">授权用户信息</button>
     </div>
 </template>
 
 <script>
-import {get, showSuccess} from '../../until'
+import {get,post,showSuccess, showModal} from '../../until'
 import qcloud from 'wafer2-client-sdk'
 import config from '../../config'
 import YearProgress from '@/components/YearProgress'
@@ -39,6 +39,24 @@ export default {
         })
       }
     },
+  async addBook (isbn) {
+      console.log(isbn)
+      const res = await post('/weapp/addbook', {
+        isbn,
+        openid: this.userinfo.openId
+      })
+      showModal('添加成功', `${res.title}添加成功`)
+    },
+    scankBook(){
+      wx.scanCode({
+        success: (res) => {
+          if(res.result){
+              this.addBook(res.result);
+          }
+      
+    }
+      })
+    }
 
   },
   onShow(){

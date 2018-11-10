@@ -1,19 +1,22 @@
 <template>
     <div>
+        <TopSwiper :top="top"></TopSwiper>
         <Card :key='book.id' v-for='book in books' :book="book"></Card>
-        <p class="footer" v-if="!more">没有更多</p>
+        <p class="footer"  v-show="more">没有更多</p>
     </div>
 </template>
 
 <script>
 import Card from "@/components/Card";
+import TopSwiper from "@/components/TopSwiper"
 import { get, showSuccess, showModal } from "../../until";
 export default {
   data() {
     return {
       books: [],
       page: 0,
-      more: false
+      more: false,
+      top:[]
     };
   },
   methods: {
@@ -26,8 +29,9 @@ export default {
       wx.showNavigationBarLoading();
       const books = await get("/weapp/booklist", { page: this.page });
       //判断是否还有更多数据
-      if (books.length < 10 && this.page > 0) {
-        this.more = false;
+      if (books.list.length < 10 && this.page > 0) {
+        this.more = true
+        console.log(this.more)
       }
       //进行初始化
       if (init) {
@@ -41,10 +45,15 @@ export default {
        
       }
        wx.hideNavigationBarLoading();
+    },
+    async getTop(){
+      const tops=await get("/weapp/top")
+      this.top=tops.list
     }
   },
   mounted() {
     this.getList(true);
+    this.getTop();
   },
   // 下拉刷新
   
@@ -61,7 +70,8 @@ export default {
 	},
 
   components: {
-    Card
+    Card,
+    TopSwiper
   }
 };
 </script>

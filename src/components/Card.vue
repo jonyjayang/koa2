@@ -1,5 +1,6 @@
 <template>
 <div>
+    <a :href="detailUrl">
     <div class="book-card">
         <div class="thumb">
             <img :src="book.image" class="img" alt="">
@@ -34,6 +35,7 @@
         </div>
 
     </div>
+    </a>
     </div>
 </template>
 
@@ -43,6 +45,11 @@ import Rate from '@/components/Rate'
         props:['book'],
         components:{
             Rate
+        },
+        computed:{
+            detailUrl(){
+                return '/pages/detail/main?id='+this.book.id
+            }
         }
 
     }

@@ -9,7 +9,7 @@ module.exports=async(ctx)=>{
     const { isbn, openid } = ctx.request.body
     if(isbn&&openid){
         const findres=await mysql('book').select().where('isbn',isbn);
-        if(findres.lenth){
+        if(findres.length){
             ctx.state={
                 code:-1,
                 data:{

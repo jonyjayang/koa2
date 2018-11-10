@@ -5,11 +5,11 @@
             <img :src="book.image" class="img" alt="">
         </div>
         <div class="detail">
-            <div class="row">
+            <div class="row text-primary">
                 <div class="right">
-                    {{book.rate}}
+                    {{book.rate}}<Rate  :value='book.rate'></Rate>
                 </div>
-                <div class="left">
+                <div class="left ">
                     {{book.title}}
                 </div>
             </div>
@@ -24,9 +24,8 @@
             </div>
             <div class="row">
                 <div class="right">
-                     <!-- {{book.user_info.nickName}} -->
-                     添加者
-                   
+                     {{book.user_info.nickName}}
+
                 </div>
                 <div class="left">
                 {{book.publisher}}
@@ -39,8 +38,12 @@
 </template>
 
 <script>
+import Rate from '@/components/Rate'
     export default {
         props:['book'],
+        components:{
+            Rate
+        }
 
     }
 </script>

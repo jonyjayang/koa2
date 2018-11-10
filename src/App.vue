@@ -14,6 +14,9 @@
 </script>
 
 <style>
+.text-primary{
+  color: #EA5149;
+}
 .btn{
   color: white;
   background: #EA5A49;
@@ -27,6 +30,10 @@
 }
 .btn:active{
   background: #FA5A49;
+}
+.footer{
+  text-align: center;
+  font-size: 12px;
 }
 
 </style>

@@ -69,6 +69,10 @@ import { throws } from 'assert';
                     phone:this.phone,
                     comment:this.comment
                 }
+               if (!this.comment) {
+                   showModal("失败","添加内容不能为空")
+                    return
+                 }
                 try{
                      await post("/weapp/addcomment",data)
                      this.comment=""
@@ -79,7 +83,9 @@ import { throws } from 'assert';
             },
             async getComments(){
                 const comments=await get("/weapp/commentlist",{bookid:this.bookid})
-                this.comments = comments.list || []
+                //  console.log('comments', comments)
+                this.comments = comments.list||[""]
+                console.log(this.comments)
 
             },
             getGeo(e){

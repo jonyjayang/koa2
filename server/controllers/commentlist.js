@@ -9,15 +9,20 @@ if(bookid){
     comments=await mysqlSelect.where("bookid",bookid)
 }else if(openid){
     comments=await mysqlSelect.where("openid",openid)
+    // bookid=comments.bookid;
 }
 
 
 ctx.state.data = {
     list: comments.map(v => {
         const info = JSON.parse(v.user_info)
+        const bookid=v.bookid
         return Object.assign({}, v, {
             title: info.nickName,
-            image: info.avatarUrl
+            image: info.avatarUrl,
+          
+    
+        
         })
     })
 }

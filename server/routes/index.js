@@ -38,5 +38,6 @@ router.get('/booklist', controllers.booklist)
 router.get('/commentlist', controllers.commentlist)
 router.get('/bookdetail', controllers.bookdetail)
 router.get('/top', controllers.top)
+router.get('/bookid', controllers.bookid)
 router.get('/demo',controllers.demo)
 module.exports = router

@@ -2,7 +2,7 @@
     <div>
        <Bookdetail :info="info" :userInfo="userInfo"></Bookdetail>
        <CommentList :comments="comments"></CommentList>
-       <div class="comment">
+       <div class="comment" v-if="showAdd">
            <textarea  class="textarea" :maxlength="100" placeholder="请输入短评" v-model="comment"></textarea>
             <div class="location">
                 地理位置
@@ -18,6 +18,10 @@
                 评论
             </button>
        </div>
+       <div v-else>
+           马雷劈滚去登录
+       </div>
+       <button open-type='share' class="btn">转发给好友</button>
     </div>
 </template>
 
@@ -25,8 +29,8 @@
 import {get,post,showModal} from "@/until"
 import Bookdetail from "@/components/Bookdetail"
 import CommentList from "@/components/CommentList"
-
-import { throws } from 'assert';
+// import { throws } from 'assert';
+// import { userInfo } from 'os';
     export default {
         mounted(){
             this.bookid=this.$root.$mp.query.id,
@@ -51,6 +55,15 @@ import { throws } from 'assert';
         components:{
             Bookdetail,
             CommentList
+        },
+        computed:{
+            showAdd(){
+                if(!this.userInfo.openId){
+                    console.log(this.userInfo.openId)
+                    return false;
+                }
+                return true
+            }
         },
         methods:{
             async getDetail(){

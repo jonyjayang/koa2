@@ -28,6 +28,7 @@ export default {
     //   wx.startPullDownRefresh()
       wx.showNavigationBarLoading();
       const books = await get("/weapp/booklist", { page: this.page });
+      console.log(books);
       //判断是否还有更多数据
       if (books.list.length < 10 && this.page > 0) {
         this.more = true

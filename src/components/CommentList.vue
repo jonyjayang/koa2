@@ -3,7 +3,6 @@
         <div class="comment-list" v-if="comments.length">
             <div class="page-title" >
                 评论
-               
             </div>
             <div class="comment" v-for="comment in comments" :key="comment.id">
                 <div class="user">
@@ -53,6 +52,7 @@
       margin:10px 0;
     }
     .user{
+    
       .inline{
         display:inline-block;
         .avatar{

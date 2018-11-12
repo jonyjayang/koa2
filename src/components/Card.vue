@@ -17,7 +17,6 @@
             <div class="row">
                 <div class="right">
                        浏览量:{{book.count}}
-                   
                 </div>
                 <div class="left">
                   {{book.author}}著
